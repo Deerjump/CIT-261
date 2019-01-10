@@ -9,7 +9,10 @@
         <script>
             function getInput(){
                 var input = document.getElementById("input1").value;
-                num = findSum(input);
+                if(input != NaN){
+                    num = findSum(input);
+                }  
+                
                 document.getElementById("div1").innerHTML = num;
             }
 
@@ -26,7 +29,7 @@
 
     <body>
         <label for="inputBox"></label>
-        <input type="text" name="inputBox" id="input1">
+        <input type="number" name="inputBox" id="input1">
         <br>
         <button onclick="getInput()">Run</button>
         <div id="div1"></div>
