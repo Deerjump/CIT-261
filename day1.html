@@ -7,18 +7,28 @@
         <meta name="viewport" content="width=device-width initial-scale=1">
         
         <script>
-            function thisFunction(){
+            function getInput(){
                 var input = document.getElementById("input1").value;
-                document.getElementById("div1").innerHTML = input;
+                num = findSum(input);
+                document.getElementById("div1").innerHTML = num;
+            }
+
+            function findSum(num){
+                var sum = 0;
+                for(var i = 0; i <= num; i++){
+                    sum += i;
+                    console.log(sum);
+                }
+                return sum;
             }
         </script>
     </head>
 
     <body>
-        <label for="inputBox">Input</label>
+        <label for="inputBox"></label>
         <input type="text" name="inputBox" id="input1">
         <br>
-        <button onclick="thisFunction()">Run</button>
+        <button onclick="getInput()">Run</button>
         <div id="div1"></div>
     </body>
 </html>
