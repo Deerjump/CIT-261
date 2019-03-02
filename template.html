@@ -1,0 +1,40 @@
+<html>
+    <head>
+        <script>
+            
+        </script>
+    </head>
+    <body>
+        <script>
+            function random(num){
+                return function (){ 
+                   return Math.floor(Math.random() * num) + 1
+                };
+            }
+
+            const random2 = random;
+            const d6 = random(6);
+            const d20= random(20);
+
+            var counter = (function() {
+                var privateCounter = 0;
+                function changeBy(val) {
+                    privateCounter += val;
+                }
+                return {
+                    increment : function(){
+                        changeBy(1);
+                    },
+                    decrement : function(){
+                        changeBy(-1);
+                    },
+                    value : function(){
+                        return privateCounter;
+                    } 
+                };
+            })();
+            console.log(counter.increment);
+
+        </script>
+    </body>
+</html>

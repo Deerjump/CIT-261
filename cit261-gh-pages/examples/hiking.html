@@ -20,6 +20,15 @@
         width: 100%;
         max-width: 500px;
       }
+
+      .info{
+        display: none;
+      }
+
+      .open{
+        display:block;
+      }
+
     </style>
   </head>
 
@@ -93,40 +102,73 @@
       ];
 
       //on load grab the array and insert it into the page
-
-      // 1 get the element that will hold the list
-      const listElement = document.getElementById('hikes');
-      // 2 clear out the current contents
-
-      // 3 for each element in the list...
-      hikeList.forEach(hike => {
+      window.addEventListener('load', function(){
+        // 1 get the element that will hold the list
+        const listElement = document.getElementById('hikes');
+        // 2 clear out the current contents
+          listElement.innerHTML = '';
+        // 3 for each element in the list...
+        hikeList.forEach(hike => {
         // 4 ...build and append an element
-        listElement.appendChild(createHike(hike));
+          listElement.appendChild(renderHike(hike));
+        });
       });
+        // 5 function to build out an li element with the appropriate html structure
+        function createHike(hike) {
+          //create the DOM elements and append them together
+          // li to hold everything
+          const item = document.createElement('li');
+          //  we also need an img
+          const img = document.createElement('img');
+          //  and we need to set the src and alt attributes
+          console.dir();
+          img.alt = hike.imgAlt;
+          img.src = hike.imgSrc;
+          // and create elements for headlines and paragraphs
+          const title = document.createElement('h2');
+          title.innerHTML = hike.name;
 
-      // 5 function to build out an li element with the appropriate html structure
-      function createHike(hike) {
-        //create the DOM elements and append them together
-        // li to hold everything
-        const item = document.createElement('li');
-        //  we also need an img
-
-        //  and we need to set the src and alt attributes
-
-        // and create elements for headlines and paragraphs
-
-        //  append all of the parts to our item
-
-        // return our new element
-        return item;
-      }
+          //  append all of the parts to our item
+          item.appendChild(img);
+          item.appendChild(title);
+          // return our new element
+          return item;
+        }
+      
 
       function renderHike(hike) {
         // Do it again with a template literal string
         const item = document.createElement('li');
         item.innerHTML = `
-            
-                `;
+            <h2>${hike.name}</h2>
+            <div>
+              <h3>Distance</h3>
+              <p>${hike.distance}</p>
+            </div>
+            <div>
+              <h3>Difficulty</h3>
+              <p>${hike.difficulty}</p>
+            </div>
+            <div class="info">
+              <img src="falls.jpg" alt="Image of Bechler Falls" />
+              <div>
+                <h3>Description</h3>
+                <p>${hike.description}</p>
+              </div>
+              <div>
+                <h3>How to get there</h3>
+                <p>
+                  ${hike.directions}
+                </p>
+              </div>
+            <div>
+        `;
+
+        item.addEventListener('touchend', (e) =>{
+          
+          console.dir(e);
+        }, true);
+
         return item;
       }
     </script>
