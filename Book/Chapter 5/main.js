@@ -137,7 +137,7 @@ function textScripts(text) {
   }).join(", ");
 }
 
-// console.log(textScripts('英国的狗说"woof", 俄罗斯的狗说"тяв"'));
+console.log(textScripts('英国的狗说"woof", 俄罗斯的狗说"тяв"'));
 
 //console.log(filter(SCRIPTS, script => script.living));
 // console.log(SCRIPTS.filter(s => s.direction == "ttb"));
@@ -170,16 +170,33 @@ function loop(start, test, update, body){
    }
 }
 
-loop(3, n => n > 0, n => n - 1, console.log);
+//loop(3, n => n > 0, n => n - 1, console.log);
 
 // Exercise 3 - Everything
 
 function every(array, test) {
+   let same = false;
    for(let element of array) {
-      
+      if (test(element)){
+         same = true;
+      }
+      else{
+         same = false;
+      }
    }
+   return same;
 }
 
-console.log(every([1,3,5], n => n < 10));
-console.log(every([2,4,16], n => n < 10));
-console.log(every([], n => n < 10));
+// console.log(every([1,3,5], n => n < 10));
+// console.log(every([2,4,16], n => n < 10));
+// console.log(every([], n => n < 10));
+
+//  Exercise 4 - Dominant Writing Direction
+//  Remember characterScript() and countBy()
+function dominantDirection(text){
+   return text;
+}
+
+
+// console.log(dominantDirection("Hello!"));
+// console.log(dominantDirection("hey, مساء الخير"));

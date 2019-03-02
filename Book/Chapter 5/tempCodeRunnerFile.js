@@ -1,3 +1,2 @@
-console.log(arrays.reduce((a,b) => {
-//    return a.concat(b)
-// }));
+console.log(dominantDirection("Hello!"));
+// console.log(dominantDirection("hey, مساء الخير"));
