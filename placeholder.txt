@@ -1,0 +1,7 @@
+size = new Dimension(1960,1080);
+JFrame win = new JFrame("TextTest");
+win.setSize(size);
+win.setDefautCloseOperation(JFrame.EXIT_ON_CLOSE);
+win.getContentPane().setBackground(new Color(100,100,100));
+win.add(this);
+win.setVisible(true);
