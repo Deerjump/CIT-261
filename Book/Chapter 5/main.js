@@ -102,10 +102,10 @@ function characterScript(code) {
 
 // console.log(characterScript(121));
 
-// let roseDragon = "🌹🐉";
-// for (let char of roseDragon) {
-//   console.log(char);
-// }
+let roseDragon = "🌹🐉";
+for (let char of roseDragon) {
+  console.log(char);
+}
 
 function countBy(items, groupName){
    let counts = [];

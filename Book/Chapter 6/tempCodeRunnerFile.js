@@ -10,12 +10,12 @@ function calcDamage(damage, defense, toughness = 0){
    return damage * (1 - Math.min(20, Math.max( defense / 5, defense - damage / (toughness / 4 + 2)))/25);
 }
 
-// console.log(calcDamage(5, 20, 8));
-
-function random(num){
-   let random = Math.random()
-   console.log(random);
-   return Math.floor(random * num); 
+function calcDamageReduction(damage, toughness){
+   return damage*2 / ((toughness / 8) + 1);
 }
+let total = 8.1 + 20.25 + 15.19 + 7.09;
 
-console.log(random(10));
+// console.log(calcDamage(6, total, 300))
+// console.log(calcDamageReduction(6, 300))
+
+console.log(calcDamage(16, 20, 600));
