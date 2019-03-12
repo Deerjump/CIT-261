@@ -1,7 +1,11 @@
-let rabbit = {};
-rabbit.speak = function(line) {
-   console.log(`The rabbit says '${line}'`);
-};
+class Rabbit {
+   constructor(type) {
+      this.type = type;
+   }
+   speak(line){
+      console.log(`The ${this.type} rabbit says '${line}'`);
+   }
+}
 
 rabbit.speak("I'm alive");
 
