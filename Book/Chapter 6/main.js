@@ -23,3 +23,6 @@ function random(num){
 }
 
 console.log(random(10));
+
+
+// hey im different
