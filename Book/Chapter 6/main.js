@@ -7,22 +7,27 @@ class Rabbit {
    }
 }
 
-rabbit.speak("I'm alive");
+// rabbit.speak("I'm alive");
 
+// let ages = {
+//    Boris: 39,
+//    Liang: 22,
+//    Júlia: 62,
+// };
 
-function calcDamage(damage, defense, toughness = 0){
-   return damage * (1 - Math.min(20, Math.max( defense / 5, defense - damage / (toughness / 4 + 2)))/25);
-}
+// console.log(`Júlia is ${ages["Júlia"]}`);
+// console.log("Is Jack's age known?", "Jack" in ages);
+// console.log("Is toString's age known?", "toString" in ages);
 
-// console.log(calcDamage(5, 20, 8));
+// console.log("toString" in Object.create(null));
 
-function random(num){
-   let random = Math.random()
-   console.log(random);
-   return Math.floor(random * num); 
-}
+let ages = new Map();
+ages.set("Boris", 39);
+ages.set("Liang", 22);
+ages.set("Júlia", 62);
 
-console.log(random(10));
+let sym = Symbol("name");
+console.log(sym == Symbol("name"));
 
-
-// hey im different
+Rabbit.prototype[sym] = 55;
+// console.log(blackRabbit[sym]);
