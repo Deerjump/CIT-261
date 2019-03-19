@@ -5,18 +5,10 @@ const baseUrl = 'https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson
 document.getElementById('button').addEventListener('click', buttonClick);
 
 
-async function buttonClick(){
-   let location = await getLocation();  
-   location.resolve();
-   let locationJSON = JSON.stringify(location);
-   console.log(locationJSON);
+function buttonClick(){
+   
+   let location = getLocation();
+   location.then(function(response){
+      console.log(response.coords.longitude);
+   })
 }
-
-let promise = test();
-
-promise.then((message) =>{
-   console.log('This is in the then ' + message)
-}).catch((messge) => {
-   console.log('This is in the catch ' + message)
-})
-
