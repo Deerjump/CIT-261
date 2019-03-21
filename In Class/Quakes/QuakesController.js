@@ -19,21 +19,33 @@ export default class QuakesController {
 
    async init(){
 // use this as a place to grab the element identified by this.parent, do the initial call of this.intiPos(), and display some quakes by calling this.getQuakesByRadius()
-    
+   this.parent = document.getElementById('quakeList');
+   await this.initPos();
+   let json = await this.quakes.getEarthQuakesByRadius(this.position);
+   this.quakesView.renderQuakeList(this.quakes._quakes, this.parent);  
    }
 
    async initPos() {
       if(this.position.lat === 0) {
          try {
             // try to get the position using getLocation()
-
+            var loc = getLocation();
             // if we get the location back then set the latitude and longitude into this.position
-            location = await getLocation();
+               await loc.then((response) =>{
+
+               this.position.lat = response.coords.latitude;
+               this.position.lon = response.coords.longitude;  
+               
+            })
+            loc.catch(function(){
+               console.log("Error getting location");
+            })
          } catch (error) {
-            console.log(error);
+           console.log(error);
          }
       }
    }
+
    async getQuakesByRadius(radius = 100) {
       //set a loading message in case it takes long to get the quakes
       this.parentElement.innerHTML = 'Loading...';
