@@ -22,8 +22,11 @@ export default class QuakesView{
          ul.appendChild(li);
       }
    }
+   
    renderQuake(quake, element) {
       const quakeProperties = Object.defineProperties(quake.properties);
-      // for the provided quake make a list of each of the properties associated with it. Then append the list to the provided element. Notice the first line of this method. Object.entries() is a slick way to turn an object into an array so that we can iterate over it easier! 
+      //for the provided quake make a list of each of the properties associated with it. 
+      //Then append the list to the provided element. Notice the first line of this method. 
+      //Object.entries() is a slick way to turn an object into an array so that we can iterate over it easier! 
    }
 }

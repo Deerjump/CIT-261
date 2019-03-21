@@ -5,20 +5,23 @@ import QuakesView from './QuakesView.js';
 export default class QuakesController {
    constructor(parent, position = null) {
       this.parent = parent;
-// sometimes the DOM won't exist/be ready when the Class gets instantiated, so we will set this later in the init()
+// sometimes the DOM won't exist/be ready when the Class gets instantiated, 
+//so we will set this later in the init()
       this.parentElement = null;
 // let's give ourselves the option of using a location other than the current location by passing it in.
       this.position = position || {
          lat: 0,
          lon: 0
       };
-// this is how our controller will know about the model and view...we add them right into the class as members.
+// this is how our controller will know about the model and view...
+//we add them right into the class as members.
       this.quakes = new Quake();
       this.quakesView = new QuakesView();
    }
 
    async init(){
-// use this as a place to grab the element identified by this.parent, do the initial call of this.intiPos(), and display some quakes by calling this.getQuakesByRadius()
+// use this as a place to grab the element identified by this.parent, 
+// do the initial call of this.intiPos(), and display some quakes by calling this.getQuakesByRadius()
       this.parentElement = document.getElementById('quakeList');
       await this.initPos();
       this.getQuakesByRadius();
@@ -52,7 +55,12 @@ export default class QuakesController {
       await this.quakes.getEarthQuakesByRadius(this.position);
       // render the list to html
       this.quakesView.renderQuakeList(this.quakes._quakes, this.parentElement); 
-      // add a listener to the new list of quakes to allow drill down in to the details. The listener should call this.getQuakeDetails on the targeted element
+      // add a listener to the new list of quakes to allow drill down in to the details. 
+      // The listener should call this.getQuakeDetails on the targeted element 
+      document.getElementById('quakeList').addEventListener('click', function(){
+        let target = event.target;
+        console.log(target.getAttribute("data-id"));
+      })
    }
    
    async getQuakeDetails(quakeId) {
