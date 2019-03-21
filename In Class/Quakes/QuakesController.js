@@ -19,10 +19,10 @@ export default class QuakesController {
 
    async init(){
 // use this as a place to grab the element identified by this.parent, do the initial call of this.intiPos(), and display some quakes by calling this.getQuakesByRadius()
-   this.parent = document.getElementById('quakeList');
-   await this.initPos();
-   let json = await this.quakes.getEarthQuakesByRadius(this.position);
-   this.quakesView.renderQuakeList(this.quakes._quakes, this.parent);  
+      this.parentElement = document.getElementById('quakeList');
+      await this.initPos();
+      this.getQuakesByRadius();
+      
    }
 
    async initPos() {
@@ -31,11 +31,9 @@ export default class QuakesController {
             // try to get the position using getLocation()
             var loc = getLocation();
             // if we get the location back then set the latitude and longitude into this.position
-               await loc.then((response) =>{
-
-               this.position.lat = response.coords.latitude;
-               this.position.lon = response.coords.longitude;  
-               
+            await loc.then((response) =>{
+            this.position.lat = response.coords.latitude;
+            this.position.lon = response.coords.longitude;  
             })
             loc.catch(function(){
                console.log("Error getting location");
@@ -51,11 +49,12 @@ export default class QuakesController {
       this.parentElement.innerHTML = 'Loading...';
 
       // get the list of quakes in the specified radius of the location
-    
+      await this.quakes.getEarthQuakesByRadius(this.position);
       // render the list to html
-    
+      this.quakesView.renderQuakeList(this.quakes._quakes, this.parentElement); 
       // add a listener to the new list of quakes to allow drill down in to the details. The listener should call this.getQuakeDetails on the targeted element
    }
+   
    async getQuakeDetails(quakeId) {
       // get the details for the quakeId provided, then send them to the view to be displayed
    
