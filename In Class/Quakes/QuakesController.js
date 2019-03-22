@@ -57,15 +57,17 @@ export default class QuakesController {
       this.quakesView.renderQuakeList(this.quakes._quakes, this.parentElement); 
       // add a listener to the new list of quakes to allow drill down in to the details. 
       // The listener should call this.getQuakeDetails on the targeted element 
-      document.getElementById('quakeList').addEventListener('click', function(){
-        let target = event.target;
-        console.log(target.getAttribute("data-id"));
+      document.getElementById('quakeList').addEventListener('click', () => {
+         let target = event.target;
+         this.getQuakeDetails(target.getAttribute("data-id"));
       })
    }
-   
+
    async getQuakeDetails(quakeId) {
       // get the details for the quakeId provided, then send them to the view to be displayed
-   
+      let quake = await this.quakes.getQuakeById(quakeId);
+      console.log(quake);
+      this.quakesView.renderQuake(quake, this.parentElement);
    }
 }
 
