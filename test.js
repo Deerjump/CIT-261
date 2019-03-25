@@ -1,12 +1,24 @@
-function repeat(n, action) {
-    for (let i = 0; i < n; i++) {
-      action(i);
-    }
-  }
+const delay = (duration) =>
+  new Promise(resolve => setTimeout(resolve, duration))
 
-let labels = [];
-repeat(5, i => {
-  labels.push(`Unit ${i + 1}`);
-});
-console.log(labels);
-// → ["Unit 1", "Unit 2", "Unit 3", "Unit 4", "Unit 5"]
+async function asyncWithAwait(prefix) {
+  console.log(prefix + ' before await')
+  await delay(1000)
+  console.log(prefix + ' after await')
+}
+
+function asyncWithPromise(prefix) {
+  console.log(prefix + ' before promise')
+  return delay(1000)
+  .then(_ => console.log(prefix + ' after promise'))
+}
+
+async function run() {
+   let prefix = '(2)'
+   console.log(prefix + ' with await')
+   await asyncWithAwait(prefix)
+   console.log(prefix + ' with promise')
+   asyncWithPromise(prefix).then(_ => console.log(prefix + ' after all'))
+ }
+ 
+ run()
